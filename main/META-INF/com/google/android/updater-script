@@ -1,11 +1,43 @@
+ui_print("Установщик прошивок (c) 2016 от lolo666");
+ui_print("");
+ui_print("Начало установки...");
+
+show_progress(0.100000, 5);
 ifelse(is_mounted("/system"), unmount("/system"));
 ifelse(is_mounted("/data"), unmount("/data"));
+
+ui_print("Монтирование системы...");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p7", "/data");
-show_progress(0.500000, 0);
+show_progress(0.200000, 10);
+
+ui_print("Форматирование системы...");
 format("ext4", "EMMC", "/dev/block/mmcblk0p5", "0", "/system");
+show_progress(0.300000, 55);
+
+ui_print("Установка загрузчика...");
+show_progress(0.350000, 2);
+if file_getprop("/tmp/aroma/type.prop", "selected") == "1" then
+package_extract_file("boot1.img", "/dev/bootimg");
+else
+package_extract_file("boot2.img", "/dev/bootimg");
+endif;
+
+ui_print("Установка лого...");
+package_extract_file("logo.bin", "/dev/logo");
+show_progress(0.400000, 2);
+
+ui_print("Установка прошивки...");
 mount("ext4", "EMMC", "/dev/block/mmcblk0p5", "/system");
-package_extract_dir("recovery", "/system") || abort("Failed to extract dir from \"recovery\" to \"/system\".");
+show_progress(0.800000, 1800);
+delete_recursive("/system/etc/init.d");
 package_extract_dir("system", "/system") || abort("Failed to extract dir from \"system\" to \"/system\".");
+
+if file_getprop("/tmp/aroma/type.prop", "selected") == "1" then
+package_extract_dir("system1", "/system");
+else
+package_extract_dir("system2", "/system");
+endif;
+
 symlink("../ui/MessageComplete.ogg", "/system/media/audio/notifications/MessageComplete.ogg");
 symlink("../ui/MessageIncoming.ogg", "/system/media/audio/notifications/MessageIncoming.ogg");
 symlink("/data/miui/miuisdk.apk", "/system/framework/miuisdk.jar");
@@ -136,7 +168,7 @@ set_metadata("/system/bin/mtpd", "uid", 0, "gid", 2000, "mode", 0755, "capabilit
 set_metadata("/system/bin/muxreport", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:muxreport_exec:s0");
 set_metadata("/system/bin/ndc", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:ndc_exec:s0");
 set_metadata("/system/bin/netcfg", "uid", 0, "gid", 3003, "mode", 02750, "capabilities", 0x0, "selabel", "u:object_r:netcfg_exec:s0");
-set_metadata("/system/bin/netd", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:netd_exec:s0");
+set_perm_recursive(0, 0, 0755, 0755, "/system/bin/netd");
 set_metadata("/system/bin/netdiag", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:netdiag_exec:s0");
 set_metadata("/system/bin/nvram_agent_binder", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:nvram_agent_binder_exec:s0");
 set_metadata("/system/bin/nvram_daemon", "uid", 0, "gid", 2000, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:nvram_daemon_exec:s0");
@@ -215,13 +247,12 @@ set_metadata("/system/xbin/showmap", "uid", 0, "gid", 2000, "mode", 0755, "capab
 set_metadata("/system/xbin/su", "uid", 0, "gid", 0, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:su_exec:s0");
 set_metadata("/system/xbin/tcpdump", "uid", 0, "gid", 0, "mode", 0755, "capabilities", 0x0, "selabel", "u:object_r:tcpdump_exec:s0");
 set_metadata("/system/xbin/su", "uid", 0, "gid", 0, "mode", 06755, "capabilities", 0x0, "selabel", "u:object_r:su_exec:s0");
-show_progress(0.200000, 0);
-show_progress(0.200000, 10);
-assert(package_extract_file("boot.img", "/tmp/boot.img"),
-       write_raw_image("/tmp/boot.img", "bootimg"),
-       delete("/tmp/boot.img"));
-assert(run_program("/system/bin/dd", "if=/dev/zero", "of=/proc/driver/mtd_writeable", "bs=3c", "count=1"));
-show_progress(0.100000, 0);
+show_progress(0.850000, 1);
+set_perm_recursive(0, 0, 0755, 0755, "/system/etc/init.d"); 
+set_perm_recursive(0, 0, 0755, 0755, "/system/etc/init.d.loop"); 
+show_progress(0.870000, 1);
+show_progress(0.890000, 1);
+
 delete("/data/miui/apps/GoogleTTS.apk");
 delete("/data/app/GoogleTTS.apk");
 delete_recursive("/data/miui/cust/cn/app_overlay");
@@ -236,6 +267,7 @@ delete_recursive("/data/miui/cust/ph/app_overlay");
 delete_recursive("/data/miui/cust/sg/app_overlay");
 delete_recursive("/data/miui/cust/th/app_overlay");
 delete_recursive("/data/miui/cust/tw/app_overlay");
+
 package_extract_dir("data", "/data");
 package_extract_file("META-INF/com/miui/miui_update", "/cache/miui_update");
 set_metadata("/cache/miui_update", "uid", 0, "gid", 0, "mode", 0555, "capabilities", 0x0);
@@ -245,5 +277,8 @@ set_metadata_recursive("/data/miui", "uid", 1000, "gid", 1000, "dmode", 0755, "f
 delete_recursive("/data/miui/preinstall_apps");
 delete_recursive("/data/miui/cust/preinstall_apps");
 delete("/data/miui/cust/cn/theme/operator/boots/bootanimation.zip");
+
 unmount("/data");
 unmount("/system");
+show_progress(1.000000, 20);
+ui_print("Установка завершена! Перезагрузите телефон.");

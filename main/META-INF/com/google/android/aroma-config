@@ -1,0 +1,53 @@
+ini_set("rom_name", "MIUI 8");
+ini_set("rom_version", "6.9.8");
+ini_set("rom_date", "09.09.2016");
+ini_set("rom_author", "lolo666");
+ini_set("rom_device", "ZTE Blade L3");
+
+calibrate("0.9718","4","1.0176","-9","yes");
+fontresload( "0", "ttf/DroidSans.ttf", "12" );
+fontresload( "1", "ttf/DroidSans.ttf", "18" );
+
+theme("miui4");
+
+loadlang("langs/ru.lang");
+
+menubox("<~type>",
+"<~type1.1>",
+"@customize",
+"type.prop",
+"<~type2.1>", "", "",
+"<~type2.2>", "", "");
+
+
+
+ini_set("text_next", "<~text_install>");
+
+viewbox("<~ayr>",
+"<~ayr1>",
+"@info");
+
+confirm("<~confirm>",
+"<~confirm1.1>",
+"@confirm",
+"<~confirm2.1>",
+"<~confirm3.1>");
+
+ini_set("text_next", "<~text_next1>");
+
+install("<~install>",
+"<b>"+ ini_get("rom_name") +"<~install1.1>" + 
+"<~install1.2>",
+"@install",
+"<~install2.1>" + ini_get("rom_name") + "<~install2.2>");
+
+ini_set("text_next", "<~text_finish>");
+
+checkviewbox("<~reboot>",
+"<~reboot1.1>",
+"@welcome",
+"<~reboot2.1>", "1", "reboot");
+
+if getvar("reboot")=="1" then
+reboot("onfinish");
+endif;

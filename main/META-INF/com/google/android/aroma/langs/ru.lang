@@ -1,0 +1,142 @@
+text_ok=OK
+text_next=Далее >
+text_back=< Назад
+text_yes=Да
+text_no=Нет
+text_about=О прошивке
+text_calibrating=Калибровка
+text_quit=Покинуть установку
+text_quit_msg=Вы действительно хотите покинуть установку?
+
+
+text_install=Установить
+text_next1=Далее >
+text_finish=Закончить
+
+themes=Темы
+themes1.1=Выберите тему
+themes2.1=Без темы
+themes2.2=ICS
+themes2.3=MIUI
+themes2.4=MIUI v4
+themes2.5=Sense
+themes3.1=Стандартная тема AROMA Installer
+themes3.2=Ice Cream Sandvich тема
+themes3.3=MIUI тема
+themes3.4=MIUI v4 тема
+themes3.5=Sense тема
+
+welcome=Добро пожаловать
+welcome1=Прошивка <b>
+welcome2=</b> v
+welcome3=для 
+welcome4=от <b>
+welcome5=</b>.\
+Дата: 
+welcome6=.\
+Нажмите Далее для продолжения.
+
+agreebox=Соглашение
+agreebox1.1=Отказ от ответственности
+agreebox2.1=Согласен.
+agreebox3.1=Вы должны согласиться, чтобы продолжить
+
+type=Выбор ревизии
+type1.1=Перед началом установки укажите свою ревизию:
+type2.1=Ревизия 1
+type2.2=Ревизия 2
+type3.1=
+type3.2=
+
+changelog=Изменения
+changelog1=Список изменений
+
+checkbox=Выбор компонентов
+checkbox1.1=Установка дополнительных компонентов
+checkbox2.1=Выбирай:
+checkbox2.2=Группа 2
+checkbox3.1=Усилитель звука Viper FX
+checkbox3.2=Кастомный ROOT
+checkbox3.3=Круглые иконки
+checkbox3.4=Root Explorer
+checkbox3.5=ES File Explorer
+checkbox3.6=Удаление GApps
+checkbox3.7=Прошивка
+checkbox3.8=OG YouTube
+checkbox3.9=Интерполяция камеры до 8 Мп
+checkbox3.10=Режим накопителя
+checkbox3.11=Dolby Atmos
+checkbox3.12=Иконки 2
+checkbox4.1=Замена стандартного MiSound
+checkbox4.2=SuperSU
+checkbox4.3=Установка круглых иконок темы
+checkbox4.4=Файловый менеджер
+checkbox4.5=Файловый менеджер
+checkbox4.6=Удаление всех google-сервисов
+checkbox4.7=Установка MIUI v8
+checkbox4.8=Просмотр видео YouTube
+checkbox4.9=Увеличивает разрешение снимков
+checkbox4.10=Скрипт для Init.d, позволяющий подключать устройство в режиме накопителя
+checkbox4.11=Усилитель звука Dolby Sound
+checkbox4.12=Пакет иконок
+
+selectbox=Окно выбора
+selectbox1.1=Вы можете выбрать один вариант в каждой группе.
+selectbox2.1=Группа 1
+selectbox2.2=Группа 2
+selectbox3.1=1
+selectbox3.2=2
+selectbox3.3=3
+selectbox3.4=4
+selectbox4.1=Первый
+selectbox4.2=Второй
+selectbox4.3=Третий
+selectbox4.4=Четвертый
+
+demo=Демо
+demo1.1=Что вы хотите посмотреть?
+demo2.1=Установщик
+demo2.2=Другое
+demo3.1=Устанавливает прошивки, патчи, ядра...
+demo3.2=Системная информация, вычисления и т.д.
+
+sys.title1=Информация о системе
+sys.title2=Информация о памяти
+
+sysinfo=Устройство
+sysinfo1=Здесь некоторая информация о вашем устройстве.
+
+back=Возврат
+back1.1=Вы можете вернуться на один из предыдущих экранов.
+back2.1=Не возвращаться
+back2.2=Вернуться на прошлый экран
+
+calculations=Вычисления
+
+iif=Сравнение
+iif1=Верно
+iif2=Неверно
+
+alert=Установка
+alert1.1=Теперь перейдем к установщику.
+alert2.1=Хорошо
+
+ayr=Вы готовы?
+ayr1=Нажмите Установить, чтобы продолжить.
+
+confirm=Подтверждение
+confirm1.1=Начать прошивку?
+confirm2.1=Да
+confirm3.1=Нет
+
+install=Установка
+install1.1=</b> устанавливается.\
+\
+
+install1.2=Пожалуйста, подождите...
+install2.1=Мастер установки успешно установил <b>
+install2.2=</b>. Нажмите Далее, чтобы закончить.
+
+reboot=Перезагрузка
+reboot1.1=Хотите ли вы перезагрузить устройство после выхода?
+reboot2.1=Перезагрузить устройство
